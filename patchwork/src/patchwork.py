@@ -4,10 +4,22 @@ import os
 import sys
 from dotenv import load_dotenv
 import tiktoken
+import requests
+import json
+from dotenv import load_dotenv
 
-# Load environment variables from the .env file
 load_dotenv()
-client = OpenAI()
+
+url = "https://api.portkey.ai/v1/chat/completions"
+
+
+headers = {
+    "x-portkey-api-key": os.getenv("PORTKEY_API_KEY"),
+    "x-portkey-virtual-key": os.getenv("PORTKEY_VIRTUAL_KEY"),
+    "Content-Type": "application/json"
+}
+
+#client = OpenAI()
 MODEL = "gpt-4o"
 # Function to encode the image
 def encode_image(image_path):
@@ -16,7 +28,7 @@ def encode_image(image_path):
 
 
 # Getting the base64 string
-def analyze(content):
+#def analyze(content):
     response = client.chat.completions.create(
     model=MODEL,
     messages=[
@@ -26,10 +38,18 @@ def analyze(content):
         }
     ],
     )
-
     return response.choices[0].message.content
 
 
+def analyze_portkey(content):
+    payload = {
+    "messages": [
+        {"role": "user", "content": content}
+    ],
+    "model": "gpt-4o"
+    }
+    response = requests.post(url, headers=headers, json=payload)
+    return response.json()["choices"][0]["message"]["content"]
 
 def process_directory(directory_path):
     """Process all images in the directory and analyze mental health impact."""
@@ -56,8 +76,10 @@ def process_directory(directory_path):
     if len(texts) > 1:
         print("Analyzing extracted text for mental health impact...")
         # analysis = analyze(texts)
+        analysis = analyze_portkey(texts)
         print("\n--- Mental Health Impact Analysis ---")
         # print(analysis)
+        print(analysis)
     else:
         print("No images from this file.")
 

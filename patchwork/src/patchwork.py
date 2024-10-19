@@ -5,11 +5,22 @@ import sys
 from dotenv import load_dotenv
 import tiktoken
 from PIL import Image
+import requests
 
 # Load environment variables from the .env file
 load_dotenv()
-client = OpenAI()
+# client = OpenAI()
 MODEL = "gpt-4o"
+
+
+url = "https://api.portkey.ai/v1/chat/completions"
+
+
+headers = {
+    "x-portkey-api-key": os.getenv("PORTKEY_API_KEY"),
+    "x-portkey-virtual-key": os.getenv("PORTKEY_VIRTUAL_KEY"),
+    "Content-Type": "application/json"
+}
 
 # Function to compress the image without losing much quality
 def compress_image(image_path, max_size=(1024, 1024), quality=85):
@@ -44,16 +55,15 @@ def encode_image(image_path):
 
 # Function to analyze content
 def analyze(content):
-    response = client.chat.completions.create(
-        model=MODEL,
-        messages=[
-            {
-                "role": "user",
-                "content": content
-            }
-        ],
-    )
-    return response.choices[0].message.content
+    payload = {
+    "messages": [
+        {"role": "user", "content": content}
+    ],
+    "model": "gpt-4o-mini"
+    }
+    response = requests.post(url, headers=headers, json=payload)
+
+    return response.json()["choices"][0]["message"]["content"]
 
 # Function to process all images in a directory
 def process_directory(directory_path):
@@ -64,7 +74,6 @@ def process_directory(directory_path):
     }]
     tokens = 0
     encoder = tiktoken.encoding_for_model(MODEL)
-
     # Load and compress all image files from the directory
     for filename in os.listdir(directory_path):
         if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif', '.tiff')):
@@ -96,11 +105,14 @@ def process_directory(directory_path):
     print(f"Number of tokens used {tokens}")
     if len(texts) > 1:
         print("Analyzing extracted text for mental health impact...")
-        # analysis = analyze(texts)
+        analysis = analyze(texts)
         print("\n--- Mental Health Impact Analysis ---")
-        # print(analysis)
+        print(analysis)
     else:
         print("No images from this directory.")
+
+
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

@@ -2,6 +2,10 @@ import base64
 from openai import OpenAI
 import os
 import sys
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file
+load_dotenv()
 
 client = OpenAI()
 
@@ -14,7 +18,7 @@ def encode_image(image_path):
 # Getting the base64 string
 def analyze(content):
     response = client.chat.completions.create(
-    model="gpt-4o-mini",
+    model="gpt-4o",
     messages=[
         {
         "role": "user",
@@ -44,17 +48,17 @@ def process_directory(directory_path):
                 "url":  f"data:image/jpeg;base64,{base64_image}"
             }
             })
-    if texts:
+    if len(texts) > 1:
         print("Analyzing extracted text for mental health impact...")
         analysis = analyze(texts)
         print("\n--- Mental Health Impact Analysis ---")
         print(analysis)
     else:
-        print("No valid text extracted from images.")
+        print("No images from this file.")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python analyze_images.py <directory_path>")
+        print("Usage: python patchwork.py <directory_path>")
         sys.exit(1)
 
     directory = sys.argv[1]

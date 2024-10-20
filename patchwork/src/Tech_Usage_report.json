@@ -1,0 +1,71 @@
+```json
+{
+  "content_analysis": {
+    "word_cloud_counts": {
+      "humor": 15,
+      "trending": 25,
+      "gaming": 20,
+      "social": 30,
+      "commentary": 12
+    },
+    "summary": "Over the past month, your content consumption has centered around humor, social commentary on current events, and the gaming community. A significant portion of your online activities includes browsing social media feeds that showcase both lighthearted memes and trending topics. The word cloud reflects a focus on terms such as 'social', 'humor', 'trending', and 'commentary', indicating diverse interests.",
+    "Overall Wellness score /100": 67
+  },
+  "problematic_usage_patterns": {
+    "issues": [
+      {
+        "issue": "Excessive scrolling and procrastination",
+        "description": "You've been spending a considerable amount of time scrolling through your social media feeds, which may signal a tendency towards procrastination. This habit could detract from productivity during work hours, leading to unfinished tasks and added stress as deadlines approach."
+      },
+      {
+        "issue": "Increased social media dependency",
+        "description": "Your frequent interactions with social media platforms suggest a dependency on virtual connections for entertainment and emotional relief. While social media can provide connection, over-reliance on these platforms may hinder real-life interactions and personal growth."
+      },
+      {
+        "issue": "Screen time during work hours",
+        "description": "A noticeable trend in your screenshots indicates that you often engage with social media during work hours. This behavior can lead to fragmented focus, making it difficult to achieve work goals and ultimately affecting overall job performance."
+      },
+      {
+        "issue": "Absence of offline leisure activities",
+        "description": "Your usage reflects limited participation in offline hobbies and interests, which may restrict opportunities for personal development and social interaction. Lack of engagement in these activities could contribute to feelings of isolation or boredom."
+      }
+    ]
+  },
+  "positive_usage": {
+    "patterns": [
+      {
+        "pattern": "Engagement with diverse topics",
+        "description": "You've shown an admirable interest in a wide array of subjects, from politics to gaming. This breadth of engagement not only informs you on current social issues but also enhances critical thinking skills as you navigate different viewpoints."
+      },
+      {
+        "pattern": "Connection through humor",
+        "description": "Your engagement with humorous content reveals an ability to find joy and lightness during your downtime. Humor is a powerful tool for relief, acting as an effective buffer against stress and helping foster connections with others."
+      },
+      {
+        "pattern": "Social commentary participation",
+        "description": "You actively comment on social issues and current events, which reflects a desire to be involved and voice your opinions. Engaging in social discourse can enhance community connections and encourage a more informed perspective on societal matters."
+      }
+    ]
+  },
+  "recommendations": {
+    "suggestions": [
+      {
+        "recommendation": "Limit social media usage",
+        "details": "Consider setting daily limits on social media activities, especially during work hours. Allocating specific times for social media will help you maintain a focus on tasks at hand and can reduce feelings of guilt when transitioning between work and leisure."
+      },
+      {
+        "recommendation": "Prioritize fulfilling offline hobbies",
+        "details": "Explore and immerse yourself in offline activities that excite you, whether it's sports, reading, or art. Engaging in these pursuits helps strike a healthy balance between virtual interactions and real-world connections, enhancing your overall well-being."
+      },
+      {
+        "recommendation": "Practice digital detox",
+        "details": "Designate certain times of the week as 'digital detox' periods, during which you refrain from social media. This practice can enrich your in-person relationships and give you time to reconnect with personal interests and hobbies away from the screen."
+      },
+      {
+        "recommendation": "Utilize goal-oriented social media time",
+        "details": "When you choose to engage with social media, enter with specific goals, such as discovering new information or connecting with certain individuals. This structured approach can lead to a more meaningful experience and reduce aimless wandering through feeds."
+      }
+    ]
+  }
+}
+```

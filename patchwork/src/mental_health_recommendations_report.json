@@ -1,0 +1,68 @@
+```json
+{
+  "content_analysis": {
+    "word_cloud_counts": {
+      "humor": 15,
+      "memes": 25,
+      "trending": 10,
+      "current_events": 5,
+      "productivity": 12,
+      "social_critique": 8
+    },
+    "summary": "In your computer usage over a recent 10-minute sampling, the content consumed primarily revolved around humor and memes, indicating a desire for light-hearted browsing. Additionally, your engagement with trending topics reflects a commitment to staying informed on current events, which may have both grounding and stimulating effects. However, the findings suggest a need for more variety in the type of content consumed, as over-dependence on humor may lead to reduced exposure to educational or diverse materials.",
+    "Overall Wellness score": 75
+  },
+  "problematic_usage_patterns": {
+    "issues": [
+      {
+        "issue": "Frequent distraction by social media",
+        "description": "Your social media engagement, particularly on Instagram and Twitter, appears to be a major distraction from productivity. The consistent scrolling through feeds may lead to significant time losses that disrupt work sessions and overall focus."
+      },
+      {
+        "issue": "Lack of educational content balance",
+        "description": "While you seem to enjoy engaging with memes and humor, your browsing patterns indicate a significant lack of educational content. This imbalance could limit your personal growth and exposure to new ideas, which are crucial for holistic development."
+      },
+      {
+        "issue": "Potential for anxiety through trending topics",
+        "description": "Your extensive interaction with trending topics, while informative, may contribute to feelings of anxiety. Constant exposure to rapidly changing news cycles can be overwhelming and might cause additional stress in your daily life."
+      },
+      {
+        "issue": "Late-night browsing behavior",
+        "description": "If late-night scrolling is a common occurrence, your sleep patterns could be adversely affected. Engaging with social media before bedtime can disrupt sleep quality, leading to fatigue and decreased productivity."
+      }
+    ]
+  },
+  "positive_usage": {
+    "patterns": [
+      {
+        "pattern": "Engagement with light-hearted content",
+        "description": "You've been effectively using humor as a coping mechanism through memes, which can play a significant role in relaxation and decompression. Humor can serve to alleviate stress and create a positive online experience."
+      },
+      {
+        "pattern": "Active participation in current discussions",
+        "description": "Your interest in trending topics and contemporary discussions illustrates a desire to stay engaged with the world around you. This active participation can foster a sense of community and belonging in online spaces."
+      }
+    ]
+  },
+  "recommendations": {
+    "suggestions": [
+      {
+        "recommendation": "Set boundaries for social media use",
+        "details": "Try implementing limits, such as 30 minutes of social media in the evening, ensuring that you balance leisure browsing with productive tasks. Consider using apps that block sites after a certain time to curtail excessive scrolling."
+      },
+      {
+        "recommendation": "Incorporate mindfulness practices",
+        "details": "While engaging with humor online is beneficial, take time to practice mindfulness through meditation or journaling. These practices can help center your thoughts and relieve anxiety, promoting overall mental wellness."
+      },
+      {
+        "recommendation": "Curate content feeds",
+        "details": "Evaluate your following list and consider unfollowing accounts that do not align with your interests or goals. By refining your content feed, you can enrich your online experience with more educational materials that challenge and inspire you."
+      },
+      {
+        "recommendation": "Scheduled breaks",
+        "details": "Integrate short breaks into your computer usage, approximately every 20-30 minutes, to improve focus and stamina. Use this time for physical movement or mental stretches, which can ultimately enhance productivity and well-being."
+      }
+    ]
+  }
+}
+```

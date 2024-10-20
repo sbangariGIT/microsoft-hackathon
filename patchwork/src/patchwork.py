@@ -74,7 +74,7 @@ def analyze_report(content):
     "messages": [
         {"role": "system", "content": """Create a comprehensive report in JSON format with the following JSON structure but add as many issues and recommendations as you see fit:
          
-         fter summarizing all screenshots, aggregate the information into a cohesive report. Consider the following aspects:
+        After summarizing all screenshots, aggregate the information into a cohesive report. Consider the following aspects:
 
    a. Mental health check:
       - Is the user exhibiting signs of doom scrolling?
@@ -105,7 +105,7 @@ All recommendations should be directed towards the user in the you tone.
          
 Descriptions length should be 4-5 sentences. Descriptions for each issue, pattern and recommendation should be unique. ALWAYS add 3-4 sentences to each description.
          
-         JSON:
+JSON FORMAT THAT YOU NEED TO FOLLOW:
          {
   "content_analysis": {
     "word_cloud_counts": {
@@ -114,22 +114,22 @@ Descriptions length should be 4-5 sentences. Descriptions for each issue, patter
         "EXAMPLE3": 30,
         "EXAMPLE4": 40
     },
-    "summary": "Over the past 3 months, your content consumption has largely focused on action movies, crime documentaries, and late-night talk shows. There has been a noticeable shift towards darker themes, with an increasing preference for content featuring intense psychological thrillers. The word cloud highlights frequent terms such as 'crime', 'thriller', 'dark', and 'night'.",
-  "Overall Wellness score /100": 70
+    "summary": "<Summary of the usage>",
+  "overall_wellness_score": 70
          },
   "problematic_usage_patterns": {
     "issues": [
       {
-        "issue": "Binge-watching after midnight",
-        "description": "You've been engaging in excessive binge-watching sessions from 12 AM to 4 AM, particularly on weekends. This pattern has persisted for 6 consecutive weeks, which could be impacting your sleep quality."
+        "issue": "<Issue Tilte>",
+        "description": "<Description of the Issue>"
       },
       {
-        "issue": "Repeated exposure to violent content",
-        "description": "You're watching a large amount of violent content, such as crime documentaries and thriller movies. 80% of your content in the last month included graphic scenes of violence, which could negatively affect your mood or emotional well-being."
+        "issue": "<Issue Tilte>",
+        "description": "<Description of the Issue>"
       },
       {
-        "issue": "Lack of content variety",
-        "description": "Your viewing history shows limited diversity in content, with over 70% of the content falling into the action and thriller genres. This lack of variety may reduce exposure to new ideas or lighter, more positive content."
+        "issue": "<Issue Tilte>",
+        "description": "<Description of the Issue>"
       }
          // Add more recommendations as needed
     ]
@@ -137,16 +137,16 @@ Descriptions length should be 4-5 sentences. Descriptions for each issue, patter
   "positive_usage": {
     "patterns": [
       {
-        "pattern": "Educational content consumption",
-        "description": "You've consistently watched educational content, including documentaries on science, history, and technology. This shows a strong commitment to learning and staying informed about various topics."
+        "pattern": "<Pattern Title>",
+        "description": <Description of the Pattern
       },
       {
-        "pattern": "Healthy screen time management during weekdays",
-        "description": "During weekdays, your screen time has been limited to 1-2 hours in the evenings, indicating a balanced approach to entertainment and other responsibilities."
+        "pattern": "<Pattern Title>",
+        "description": <Description of the Pattern
       },
       {
-        "pattern": "Use of relaxation content",
-        "description": "You’ve been using meditation and relaxation content at the end of your day, which can help improve mental wellness and reduce stress."
+        "pattern": "<Pattern Title>",
+        "description": <Description of the Pattern
       }
          // Add more recommendations as needed
     ]
@@ -154,16 +154,16 @@ Descriptions length should be 4-5 sentences. Descriptions for each issue, patter
   "recommendations": {
     "suggestions": [
       {
-        "recommendation": "Set a screen-time limit for late-night viewing",
-        "details": "Try setting a limit of no more than 2 hours of content consumption after midnight. This will help improve your sleep schedule and avoid excessive screen time late at night."
+        "recommendation": "<Recommendation Title",
+        "details": "<Description of recommencation>"
       },
       {
-        "recommendation": "Explore uplifting and diverse genres",
-        "details": "Incorporate content from genres such as comedy, documentaries on nature, or feel-good dramas into your viewing habits. Watching a wider variety of content could have a more positive impact on your mood and reduce exposure to violent themes."
+        "recommendation": "<Recommendation Title",
+        "details": "<Description of recommencation>"
       },
       {
-        "recommendation": "Practice mindful watching",
-        "details": "Take regular breaks between episodes or movies, and use features like 'watch later' to limit immediate binge-watching tendencies. Reflect on how certain types of content make you feel and adjust your consumption habits accordingly."
+        "recommendation": "<Recommendation Title",
+        "details": "<Description of recommencation>"
       }
          // Add more recommendations as needed
     ]
@@ -265,7 +265,7 @@ if __name__ == "__main__":
     print(type(report))
     # Convert the report string to a JSON object
     # Define the output file name
-    output_file = "Tech_Usage_report.json"
+    output_file = "report.json"
 
     # Write the report to the output file
     with open(output_file, "w") as f:

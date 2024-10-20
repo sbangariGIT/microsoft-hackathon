@@ -59,7 +59,7 @@ def move_files_to_date_folder(date):
     os.makedirs(target_directory, exist_ok=True)
 
     # Define the files to move
-    files_to_move = ["output.png", "Tech_Usage_report.json"]
+    files_to_move = ["output.png", "report.json"]
 
     for file_name in files_to_move:
         # Construct the full path for the source file

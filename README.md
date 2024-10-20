@@ -25,7 +25,7 @@ The **Digital Well-being Activity Report App** is designed to provide users with
 
 ### **Installation**
 1. **Download the App**
-   - On your laptop clone this repository and run the flutter app.
+   - On your laptop clone this repository and the https://github.com/sbangariGIT/microsoft-hackathon-ui repository (for the flutter app) to run the demo.
 2. **Grant Permissions**
    - Enable necessary permissions for taking screenshots stored locally. Processing is currently using OpenAI but could be changed to run locally.
 

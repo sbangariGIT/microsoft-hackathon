@@ -8,6 +8,10 @@ from PIL import Image
 import requests
 import json
 # Load environment variables from the .env file
+from utils import formatOutput
+from utils import generateWordCloud
+from utils import move_files_to_date_folder
+from datetime import datetime
 load_dotenv()
 # client = OpenAI()
 MODEL = "gpt-4o-mini"
@@ -266,6 +270,9 @@ if __name__ == "__main__":
     # Write the report to the output file
     with open(output_file, "w") as f:
         f.write(report)
-
+    
+    formatOutput(output_file)
+    generateWordCloud(output_file,"output.png")
+    move_files_to_date_folder(datetime.now().strftime("%Y-%m-%d"))
 
     print(f"Tech usage report has been saved to {output_file}")

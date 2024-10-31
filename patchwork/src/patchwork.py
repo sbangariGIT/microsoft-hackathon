@@ -13,7 +13,7 @@ from utils import generateWordCloud
 from utils import move_files_to_date_folder
 from datetime import datetime
 load_dotenv()
-# client = OpenAI()
+client = OpenAI()
 MODEL = "gpt-4o-mini"
 encoder = tiktoken.encoding_for_model(MODEL)
 
@@ -59,19 +59,16 @@ def encode_image(image_path):
 
 # Function to analyze content
 def analyze(content):
-    payload = {
-    "messages": [
-        {"role": "user", "content": content}
-    ],
-    "model": MODEL
-    }
-    response = requests.post(url, headers=headers, json=payload)
-
-    return response.json()["choices"][0]["message"]["content"]
+    response = client.chat.completions.create(
+        model=MODEL,
+        messages=[{"role": "user", "content": content}]
+    )
+    return response.choices[0].message.content
 
 def analyze_report(content):
-    payload = {
-    "messages": [
+    response = client.chat.completions.create(
+        model=MODEL,
+        messages= [
         {"role": "system", "content": """Create a comprehensive report in JSON format with the following JSON structure but add as many issues and recommendations as you see fit:
          
         After summarizing all screenshots, aggregate the information into a cohesive report. Consider the following aspects:
@@ -170,12 +167,9 @@ JSON FORMAT THAT YOU NEED TO FOLLOW:
   }
 }"""},
         {"role": "user", "content": content}
-    ],
-    "model": MODEL
-    }
-    response = requests.post(url, headers=headers, json=payload)
-
-    return response.json()["choices"][0]["message"]["content"]
+    ]
+    )
+    return response.choices[0].message.content
 
 
 def create_batches(images):

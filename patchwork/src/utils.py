@@ -52,7 +52,7 @@ def move_files_to_date_folder(date):
 
     # Define the target directory path dynamically
     target_directory = os.path.join(
-        home_directory, "Library/Containers/com.example.digiForensic/Data/reports", date
+        home_directory, "Library/Containers/com.example.screensage/Data/reports", date
     )
 
     # Create the target directory if it doesn't exist

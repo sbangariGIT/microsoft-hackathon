@@ -5,26 +5,17 @@ import sys
 from dotenv import load_dotenv
 import tiktoken
 from PIL import Image
-import requests
 import json
+import anthropic
 # Load environment variables from the .env file
 from utils import formatOutput
 from utils import generateWordCloud
 from utils import move_files_to_date_folder
 from datetime import datetime
 load_dotenv()
-client = OpenAI()
-MODEL = "gpt-4o-mini"
-encoder = tiktoken.encoding_for_model(MODEL)
-
-url = "https://api.portkey.ai/v1/chat/completions"
-
-
-headers = {
-    "x-portkey-api-key": os.getenv("PORTKEY_API_KEY"),
-    "x-portkey-virtual-key": os.getenv("PORTKEY_VIRTUAL_KEY"),
-    "Content-Type": "application/json"
-}
+client = anthropic.Anthropic(api_key=os.environ["CLAUDE_API"])
+MODEL = "claude-3-5-sonnet-20241022"
+IMAGE_MEDIA_TYPE = "image/jpeg"
 
 # Function to compress the image without losing much quality
 def compress_image(image_path, max_size=(1024, 1024), quality=85):
@@ -57,19 +48,22 @@ def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode('utf-8')
 
-# Function to analyze content
+# Function to analyze content -
 def analyze(content):
-    response = client.chat.completions.create(
+    response = client.messages.create(
         model=MODEL,
+        max_tokens=8191,
         messages=[{"role": "user", "content": content}]
     )
-    return response.choices[0].message.content
+    return str(response.content[0].text)
+
 
 def analyze_report(content):
-    response = client.chat.completions.create(
+    response = client.messages.create(
         model=MODEL,
+        max_tokens=8191,
         messages= [
-        {"role": "system", "content": """Create a comprehensive report in JSON format with the following JSON structure but add as many issues and recommendations as you see fit:
+        {"role": "user", "content": """Create a comprehensive report in JSON format with the following JSON structure but add as many issues and recommendations as you see fit:
          
         After summarizing all screenshots, aggregate the information into a cohesive report. Consider the following aspects:
 
@@ -166,10 +160,11 @@ JSON FORMAT THAT YOU NEED TO FOLLOW:
     ]
   }
 }"""},
-        {"role": "user", "content": content}
+        {"role": "user", "content": content},
     ]
     )
-    return response.choices[0].message.content
+
+    return str(response.content[0].text)
 
 
 def create_batches(images):
@@ -194,10 +189,12 @@ def run_analysis_on_batch(batch):
             base64_image = encode_image(compressed_image_path)
             # Append to texts
             texts.append({
-                "type": "image_url",
-                "image_url": {
-                    "url": f"data:image/jpeg;base64,{base64_image}"
-                }
+                "type": "image",
+                "source": {
+                        "type": "base64",
+                        "media_type": IMAGE_MEDIA_TYPE,
+                        "data": base64_image,
+                    }
             })
             print(f"Appended image.... {image_path}")
             # Optionally delete the compressed image after use to save space
@@ -248,9 +245,10 @@ if __name__ == "__main__":
 
 
     comprehensive_analysis = process_directory(directory)
+    print(comprehensive_analysis)
     # Convert comprehensive_analysis to a JSON string
     analysis_json = json.dumps(comprehensive_analysis, indent=2)
-    
+    print(analysis_json)
     # Convert JSON string to a plain text string
     analysis_text = json.loads(analysis_json)
     analysis_string = str(analysis_text)
